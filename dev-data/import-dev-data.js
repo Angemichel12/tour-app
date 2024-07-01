@@ -62,4 +62,3 @@ if (process.argv[2] === "--import") {
 } else if (process.argv[2] === "--export") {
   exportDate();
 }
-console.log(process.argv);
