@@ -7,8 +7,7 @@ route
   .route("/top-5-cheap")
   .get(tourController.aliasTopTours, tourController.getAllTours);
 
-route.route("/tour-stats").get(tourController.getTourStats);
-route.route("/monthly-plan/:year").get(tourController.getMonthlyPlan);
+route.route("/tour-stats").get(tourController.getTourStat);
 
 route
   .route("/")
