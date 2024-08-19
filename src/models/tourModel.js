@@ -50,6 +50,10 @@ const tourSchema = new mongoose.Schema({
     required: [true, "A tour must have a cover image"],
   },
   images: [String],
+  secretTour:{
+    type:Boolean,
+    default:false
+  },
   createdAt: {
     type: Date,
     default: Date.now(),
@@ -69,6 +73,11 @@ tourSchema.pre('save', function(next) {
 //   console.log(doc);
 //   next();
 // })
+
+// QUERY MIDDLEWARE: runs before find()
+tourSchema.pre(/^find/, function(){
+  this.find({secretTour:{$ne:true}})
+})
 
 // Create virtual properties.
 tourSchema.virtual('durationWeek').get(function (){
