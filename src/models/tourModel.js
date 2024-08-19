@@ -79,6 +79,12 @@ tourSchema.pre(/^find/, function(){
   this.find({secretTour:{$ne:true}})
 })
 
+// AGGREGATION MIDDLEWARE: runs before aggrations
+tourSchema.pre('aggregate', function(next){
+  this.pipeline().unshift({$match: {secretTour:{$ne:true}}})
+  next();
+})
+
 // Create virtual properties.
 tourSchema.virtual('durationWeek').get(function (){
   return this.duration / 7;
